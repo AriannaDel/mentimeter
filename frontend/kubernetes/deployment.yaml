@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deployment
+  labels:
+    app: front-python
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front-python
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: front-python
+    spec:
+      securityContext:
+        #runAsNonRoot: true
+        #runAsUser: 65534
+        #fsGroup: 65534
+      containers:
+        - name: mentimeter-front
+          image: library/python-frontend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              cpu: "150m"
+              memory: "512Mi"
+            requests:
+              cpu: "150m"
+              memory: "512Mi"
