@@ -2,7 +2,7 @@ import flask
 from flask import request, jsonify
 from flask import Response
 import requests
-import json, ast
+import json
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -54,7 +54,6 @@ fig.tight_layout()
 
 @app.route('/image')
 def plot_png():
-    #fig = create_figure()
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')

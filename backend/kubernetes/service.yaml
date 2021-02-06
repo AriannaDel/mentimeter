@@ -4,7 +4,7 @@ metadata:
   name: python-backend-service
 spec:
   selector:
-    app: hello-python
+    app: backend-python
   ports:
   - protocol: "TCP"
     port: 5002

@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
   name: backend-deployment
   labels:
-    app: hello-python
+    app: backend-python
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: hello-python
+      app: backend-python
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       labels:
-        app: hello-python
+        app: backend-python
     spec:
       securityContext:
         #runAsNonRoot: true
